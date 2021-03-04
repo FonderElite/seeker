@@ -10,6 +10,7 @@ wi="\033[1;37m" #>>White#
 rd="\033[1;31m" #>Red   #
 gr="\033[1;32m" #>Green #
 yl="\033[1;33m" #>Yellow#
+st = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 def first_slow_print(s):
     for c in s + '\n' :
         sys.stdout.write(c)
@@ -45,10 +46,18 @@ def banner():
 banner()
 
 def banner(ip, port):
+    ports = [80,443,21,22]
     s = socket.socket()
     s.connect((ip, int(port)))
-    s.settimeout(5)
+    s.settimeout(1.5)
     print(s.recv(1024))
+    
+def portScanner(host,port):
+    if st.connect_ex((host, port)):
+        print("The port is closed")
+    else:
+        print("The port is open")
+
 
 def main():
  while True:
@@ -64,7 +73,9 @@ def main():
        if bool(ip) == True:
            print(wi + gr + '[+]' + wi + "Host Is Up")
            print('Ip: ' + ip)
-           banner(str(ip), 80)
+           print(wi + yl + "[!]" + wi + "Scanning Ports")
+           portScanner(ip,80)
+           #sub.call(['nc ','-l',ip,port])
        else:
           print(wi +  rd + '[-]' + wi + "Host is down or blocking the tool's probes")
     except TypeError:
