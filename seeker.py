@@ -41,7 +41,7 @@ def banner():
 ▌▌▌▌▐▒▄▌░▄▄▄░▐▄▒▌▐▐▐▐
 ''')
   print(wi + gr + '[+]' + wi +'Seeker By FonderElite')
-  print(wi + gr + '[+]' + 'Github:https://github.com/FonderElite')
+  print(wi + gr + '[+]' + wi + 'Github:https://github.com/FonderElite')
 banner()
 
 def banner(ip, port):
@@ -53,23 +53,26 @@ def banner(ip, port):
 def main():
  while True:
     try:
-       domain = input("Please Enter Domain Name: ")
+       domain = input(wi + yl + "[!]" + "Please Enter Domain Name: " + wi)
        param = '-n' if platform.system().lower()=='linux' else '-c'
        ping_param = '-n' if platform.system() == 'linux' else 'C'.lower()
        command = ['ping', '-c', '1', domain]
-       command[2]+=2
-       print(wi + "Checkin If Host is Up")
-       live = subprocess.call(command)
-       print(live)
-       if live == True:
-           print(wi + gr + '[+]' + "Host Is Up")
-           get_ip = gethostbyname(domain)
+       ip = socket.gethostbyname(domain)
+       check = print(wi + yl + "[!]" + wi + "Checking if host is up...")
+       time.sleep(0.5)
+       #live = sub.call(command)
+       if bool(ip) == True:
+           print(wi + gr + '[+]' + wi + "Host Is Up")
+           print('Ip: ' + ip)
+           banner(str(ip), 80)
+       else:
+          print(wi +  rd + '[-]' + wi + "Host is down or blocking the tool's probes")
     except TypeError:
-         print("Dumbass")
+         print("Error Command")
 
     #print(ip)
     #print(wi + gr + '[+]' + wi + 'Banner Grabbing... + str(ip)')
     #port = input("Port: ")
-    #banner(ip, port)
+    #
 
 main()
