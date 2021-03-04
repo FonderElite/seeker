@@ -51,18 +51,21 @@ def banner(ip, port):
     print(s.recv(1024))
 
 def main():
+ while True:
     try:
        domain = input("Please Enter Domain Name: ")
        param = '-n' if platform.system().lower()=='linux' else '-c'
-       command = ['ping', param, '1', domain]
+       ping_param = '-n' if platform.system() == 'linux' else 'C'.lower()
+       command = ['ping', '-c', '1', domain]
        command[2]+=2
        print(wi + "Checkin If Host is Up")
-       live = subprocess.call(command) == 0
+       live = subprocess.call(command)
+       print(live)
        if live == True:
            print(wi + gr + '[+]' + "Host Is Up")
            get_ip = gethostbyname(domain)
-    except:
-       print("False")
+    except TypeError:
+         print("Dumbass")
 
     #print(ip)
     #print(wi + gr + '[+]' + wi + 'Banner Grabbing... + str(ip)')
