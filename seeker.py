@@ -34,7 +34,7 @@ try:
 except ImportError:
  print('error')
 def banner():
-  first_slow_print(wi + gr + '''
+  first_slow_print(wi + '''
 ▒▒▒▒▒▒▐███████▌
 ▒▒▒▒▒▒▐░▀░▀░▀░▌
 ▒▒▒▒▒▒▐▄▄▄▄▄▄▄▌
@@ -53,16 +53,16 @@ def banner(ip, port):
     print(s.recv(1024))
     
 def portScanner(host,port):
-    if st.connect_ex((host, port)):
-        print("The port is closed")
-    else:
-        print("The port is open")
-
-
+ try:
+    for i in range(20):
+     connect = s.connect(host,port)
+     print("port" + i + "is open")
+ except:
+        return False
 def main():
  while True:
     try:
-       domain = input(wi + yl + "[!]" + "Please Enter Domain Name: " + wi)
+       domain = input(wi + yl + "[!]" + wi + "Please Enter Domain Name: " + wi)
        param = '-n' if platform.system().lower()=='linux' else '-c'
        ping_param = '-n' if platform.system() == 'linux' else 'C'.lower()
        command = ['ping', '-c', '1', domain]
@@ -74,7 +74,8 @@ def main():
            print(wi + gr + '[+]' + wi + "Host Is Up")
            print('Ip: ' + ip)
            print(wi + yl + "[!]" + wi + "Scanning Ports")
-           portScanner(ip,80)
+           portScanner(ip)
+          
            #sub.call(['nc ','-l',ip,port])
        else:
           print(wi +  rd + '[-]' + wi + "Host is down or blocking the tool's probes")
