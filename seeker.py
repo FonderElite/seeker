@@ -80,6 +80,8 @@ def main():
            if check_file == True:
             first_slow_print(wi + gr + "[+]" + wi + "File is saved as scan.txt")
             save = open("scan.txt","r")
+            for i in save:
+             vuln_ports = []
            else: 
             first_slow_print(wi + rd + "[-]" + wi + "File scan.txt Not Found Error")
            #sub.call(['nc ','-l',ip,port])
@@ -94,4 +96,4 @@ def main():
     #
 
 main()
-              
+          
