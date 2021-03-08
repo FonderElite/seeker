@@ -80,8 +80,11 @@ def main():
            if check_file == True:
             first_slow_print(wi + gr + "[+]" + wi + "File is saved as scan.txt")
             save = open("scan.txt","r")
-            for i in save:
-             vuln_ports = []
+            vp = ['ftp','ssh','telnet','netbios-ssn','dns','pop3','windows-rpc','mysql','http','https','smtp','msrpc']
+            if vp[0] or vp[1] or vp[2] or vp[3] or vp[4] or vp[5] or vp[6] or vp[7] or vp[8] or vp[9] or vp[10] or vp[11] in save:
+             first_slow_print(wi + gr + "[+]" + wi + "Vulnerable Ports are present!")
+            else: 
+             first_slow_print(wi + rd + "[-]" + wi + "No Vulnerable Ports are present!")
            else: 
             first_slow_print(wi + rd + "[-]" + wi + "File scan.txt Not Found Error")
            #sub.call(['nc ','-l',ip,port])
@@ -96,4 +99,3 @@ def main():
     #
 
 main()
-          
