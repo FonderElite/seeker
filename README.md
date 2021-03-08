@@ -24,6 +24,12 @@ def dependencies_print(s):
         sys.stdout.write(c)
         sys.stdout.flush()
         time.sleep(10. / 100)
+def little_fast_print(s):
+    for c in s + '\n' : 
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(4. / 100)
+
 try:
  dependencies_print(wi + yl  + '[!]' + wi + 'Checking Dependencies...')
  check_pip = os.path.exists('/usr/bin/pip')
@@ -81,9 +87,11 @@ def main():
            check_file = os.path.exists("scan.txt")
            if check_file == True:
             first_slow_print(wi + gr + "[+]" + wi + "File is saved as scan.txt")
+            print(wi + yl + "[!]" + wi + "Overriding Existing File content...")
+            time.sleep(0.4)
             save = open("scan.txt","r")
-            vp = ['ftp','ssh','telnet','netbios-ssn','dns','pop3','windows-rpc','mysql','http','https','smtp','msrpc']
-            if vp[0] or vp[1] or vp[2] or vp[3] or vp[4] or vp[5] or vp[6] or vp[7] or vp[8] or vp[9] or vp[10] or vp[11] in save:
+            vp = ['ftp','ssh','telnet','netbios-ssn','dns','pop3','windows-rpc','mysql','http','smtp','msrpc']
+            if vp[0] or vp[1] or vp[2] or vp[3] or vp[4] or vp[5] or vp[6] or vp[7] or vp[8] or vp[9] or vp[10] or vp[10] in save:
              first_slow_print(wi + gr + "[+]" + wi + "Vulnerable Port(s) found!")
             else: 
              first_slow_print(wi + rd + "[-]" + wi + "No Vulnerable Ports are present!")
@@ -94,9 +102,11 @@ def main():
             first_slow_print(wi + yl + '[!]' + wi  + 'Testing Blind Sql Injection on the target')
             url = "http://" + ip
             try:
+             currentdir = os.getcwd()
+             little_fast_print(wi + gr + "[+]" + "Current working dir: " +  wi + str(currentdir))
              sqlw = input(wi + Fore.CYAN + "#" + wi + 'SQLi_Payload location: ')
-            except FileNotFoundError:
-             first_slow_print(wi + rd + "[-]" + wi + "Error, File Not Found.")
+            except (FileNotFoundError,IsADirectory):
+             first_slow_print(wi + rd + "[-]" + wi + "Error, Make sure the file is existing.")
             openw = open(sqlw,'r')
             for i in openw:
              i = i.strip()
@@ -120,3 +130,4 @@ def main():
     #
 
 main()
+          
