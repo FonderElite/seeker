@@ -1,3 +1,4 @@
+```py
 #!/usr/bin/python3
 import mechanize
 import socket
@@ -130,4 +131,4 @@ def main():
     #
 
 main()
-          
+```
