@@ -148,5 +148,6 @@ def main():
 
 main()
 #############################################
+# You can use this but you don't own it     #
 # Don't Copy Paste this you script kiddie!  #
 #############################################
