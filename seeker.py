@@ -126,11 +126,12 @@ def main():
             wordxss = input(wi + yl + "#" + wi + "XSS Payload location: ")
             for i in wordxss:
              i.strip()
-             requestxss = request.post(domain + '/' + i)
+             print(wi + yl + "[!]" + wi + "Trying Payload=> " + i)
+             requestxss = requests.post("http://" + domain + '/' + i)
              xss_status = requestxss.status_code
              print(requestxss)
              if code >= 200 and not code > 399:
-              print(wi + gr + '[+]' + wi + 'SQLi Payload Injected Successfully!')
+              print(wi + gr + '[+]' + wi + 'XSS Payload Injected Successfully!')
              elif code >= 400:
               print(wi + rd + '[-]' + wi + 'Failed Attempt.')
            except FileNotFoundError:
@@ -146,8 +147,4 @@ def main():
     #
 
 main()
-################################
-#Originally Made By FonderElite#
-# Dont Try To Copy Paste!      #
-# Script Kiddie!               #
-################################
+#Do
