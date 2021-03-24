@@ -146,7 +146,8 @@ def main():
     #port = input("Port: ")
     #
 
-main()
+if __name__ == "__main__":
+ main()
 #############################################
 # You can use this but you don't own it     #
 # Don't Copy Paste this you script kiddie!  #
