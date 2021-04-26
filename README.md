@@ -1,14 +1,6 @@
 ```py
 #!/usr/bin/python3
-import mechanize
-import socket
-import os
-import optparse
-import sys
-import subprocess as sub
-import time
-import platform
-import requests
+import mechanize socket,os,optparse,sys,subprocess as sub,time,platform,requests
 from colorama import Fore
 wi="\033[1;37m" #>>White#
 rd="\033[1;31m" #>Red   #
